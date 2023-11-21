@@ -1,29 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+export const IMG_CDN_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-const TitleComponent = () => (
-  <a href="/">
-    <img className="logo" alt="logo" />
-  </a>
-);
-
-const HeaderComponent = () => {
-  return (
-    <div className="header">
-      <TitleComponent />
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const restaurantLists = [
+export const restaurantLists = [
   {
     info: {
       id: "120178",
@@ -777,43 +755,3 @@ const restaurantLists = [
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
   },
 ];
-
-const RestaurantCard = ({ name, cloudinaryImageId, cuisines, avgRating }) => {
-  return (
-    <div className="card">
-      <img
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      />
-      <h2>{name}</h2>
-      <h3>{cuisines}</h3>
-      <h4>{avgRating}</h4>
-    </div>
-  );
-};
-
-const BodyComponent = () => (
-  <div className="restaurants-list">
-    {restaurantLists.map((restaurant) => {
-      return <RestaurantCard {...restaurant.info} />;
-    })}
-  </div>
-);
-
-const FooterComponent = () => {
-  return <h4>Footer</h4>;
-};
-
-const AppLayout = () => (
-  <>
-    <HeaderComponent />
-    <BodyComponent />
-    <FooterComponent />
-  </>
-);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
