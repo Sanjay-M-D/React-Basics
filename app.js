@@ -1,23 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading1 = React.createElement(
-  "h1",
-  { id: "title1" },
-  "Namaste Everyone 1...!"
+const TitleComponent = () => (
+  <h1 id="title" key="h1">
+    Namaste Everyone...!
+  </h1>
 );
 
-const heading2 = React.createElement(
-  "h2",
-  { id: "title" },
-  "Namaste Everyone 2...!"
-);
+const HeaderComponent = () => {
+  return (
+    <div>
+      <TitleComponent />
+      <h2>Namaste React Header Component</h2>
+      <h2>h2 tags </h2>
+    </div>
+  );
+};
 
-const container = React.createElement("div", { id: "container" }, [
-  heading1,
-  heading2,
-]);
+const container = React.createElement("div", { id: "container" });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(container);
+root.render(<HeaderComponent />);
