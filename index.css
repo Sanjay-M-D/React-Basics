@@ -14,11 +14,18 @@ display: flex;
     padding: 10px;
 }
 
+/* App Logo  */
+.logo {
+    width: 100px;
+}
+
+/* Card Design */
 .card{
     width: 200px;
     border: 1px solid black;
     padding: 10px;
     margin:10px;
+    word-wrap: break-word;
 }
 
 .card > img{
@@ -29,4 +36,14 @@ display: flex;
 .restaurants-list {
     display: flex;
     flex-wrap: wrap;
+}
+
+
+/* Shimmer Card */
+
+.shimmer-card {
+    width: 200px;
+    height: 200px;
+    margin:20px;
+    background-color: lightgrey;
 }
