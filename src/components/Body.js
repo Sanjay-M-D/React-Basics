@@ -1,4 +1,3 @@
-import { restaurantLists } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerComponent from "./Shimmer";
 import { useEffect, useState } from "react";
@@ -65,9 +64,27 @@ const BodyComponent = () => {
         >
           Search
         </button>
+
+        <div>
+          <button
+            className="filter-btn"
+            onClick={() => {
+              // filter logic for top rated restaurants...
+              const filteredTopRestaurants = allRestaurants.filter(
+                (restaurant) => {
+                  return restaurant?.info?.avgRating > 4.3;
+                }
+              );
+              console.log(filteredTopRestaurants);
+              setFilteredRestaurants(filteredTopRestaurants);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
 
-      <div className="restaurants-list">
+      <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
           <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
         ))}

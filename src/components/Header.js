@@ -30,9 +30,13 @@ const HeaderComponent = () => {
         </ul>
       </div>
       {isLoggedIn ? (
-        <button onClick={() => setIsLoggedIn(false)}>Login</button>
+        <button className="login-btn" onClick={() => setIsLoggedIn(false)}>
+          Login
+        </button>
       ) : (
-        <button onClick={() => setIsLoggedIn(true)}>Logout</button>
+        <button className="login-btn" onClick={() => setIsLoggedIn(true)}>
+          Logout
+        </button>
       )}
     </div>
   );
