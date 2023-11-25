@@ -3,8 +3,8 @@ const ShimmerComponent = () => {
     <div className="res-container">
       {Array(15)
         .fill("")
-        .map((e) => (
-          <div className="shimmer-card"></div>
+        .map((e, index) => (
+          <div className="shimmer-card" key={index}></div>
         ))}
     </div>
   );

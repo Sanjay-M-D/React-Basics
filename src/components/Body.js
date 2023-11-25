@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import ShimmerComponent from "./Shimmer";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -86,7 +87,12 @@ const BodyComponent = () => {
 
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard {...restaurant.info} />
+          </Link>
         ))}
       </div>
     </>
