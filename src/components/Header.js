@@ -1,6 +1,7 @@
 import Logo from "../assets/img/RadhaKrishna Logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const TitleComponent = () => (
   <Link to="/">
@@ -10,11 +11,15 @@ export const TitleComponent = () => (
 
 const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const onlineStatus = useOnlineStatus();
+
   return (
     <div className="header">
       <TitleComponent />
       <div className="nav-items">
         <ul>
+          <li>OnlineStatus: {onlineStatus ? "✅" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -23,6 +28,9 @@ const HeaderComponent = () => {
           </li>
           <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>
             <Link to="/cart">Cart</Link>
