@@ -5,7 +5,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const TitleComponent = () => (
   <Link to="/">
-    <img className="logo" alt="logo" src={Logo} />
+    <img className="w-44" alt="logo" src={Logo} />
   </Link>
 );
 
@@ -15,37 +15,37 @@ const HeaderComponent = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
+    <div className="flex justify-between shadow-lg px-2 ">
       <TitleComponent />
-      <div className="nav-items">
-        <ul>
-          <li>OnlineStatus: {onlineStatus ? "✅" : "🔴"}</li>
-          <li>
+      <div className="flex items-center">
+        <ul className="flex p-4 m-4">
+          <li className="px-4">OnlineStatus: {onlineStatus ? "✅" : "🔴"}</li>
+          <li className="px-4">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/cart">Cart</Link>
           </li>
+          {isLoggedIn ? (
+            <button className="login-btn" onClick={() => setIsLoggedIn(false)}>
+              Login
+            </button>
+          ) : (
+            <button className="login-btn" onClick={() => setIsLoggedIn(true)}>
+              Logout
+            </button>
+          )}
         </ul>
       </div>
-      {isLoggedIn ? (
-        <button className="login-btn" onClick={() => setIsLoggedIn(false)}>
-          Login
-        </button>
-      ) : (
-        <button className="login-btn" onClick={() => setIsLoggedIn(true)}>
-          Logout
-        </button>
-      )}
     </div>
   );
 };

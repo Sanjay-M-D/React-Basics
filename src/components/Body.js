@@ -58,28 +58,30 @@ const BodyComponent = () => {
     <ShimmerComponent />
   ) : (
     <>
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search"
-          value={searchText}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            // Filter the data using the local 'restaurants' variable and update the state
-            const data = filterData(searchText, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        >
-          Search
-        </button>
-
-        <div>
+      <div className="filter flex">
+        <div className="search m-4 p-4 ">
+          <input
+            type="text"
+            className="border border-solid border-black"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
           <button
-            className="filter-btn"
+            className="px-4 py-2  bg-green-100 m-4 rounded-lg"
+            onClick={() => {
+              // Filter the data using the local 'restaurants' variable and update the state
+              const data = filterData(searchText, allRestaurants);
+              setFilteredRestaurants(data);
+            }}
+          >
+            Search
+          </button>
+        </div>
+
+        <div className="search m-4 p-4 flex items-center">
+          <button
+            className="filter-btn px-4 py-2 bg-gray-100 rounded-xl"
             onClick={() => {
               // filter logic for top rated restaurants...
               const filteredTopRestaurants = allRestaurants.filter(
@@ -96,7 +98,7 @@ const BodyComponent = () => {
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="res-container flex flex-wrap ">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
