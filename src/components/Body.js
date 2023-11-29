@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import ShimmerComponent from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -15,27 +15,14 @@ const BodyComponent = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchInput] = useState("");
-  console.log("render()");
+  console.log("render()", allRestaurants);
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     // Api Call
     getRestaurants();
   }, []);
-
-  async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0694952&lng=77.54761169999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    // Optional Chaining
-    setAllRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  }
 
   const onlineStatus = useOnlineStatus();
 
@@ -44,6 +31,21 @@ const BodyComponent = () => {
       <h1>
         Look's like you're offline!! Please check your Internet Connection!{" "}
       </h1>
+    );
+  }
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89037501599536&lng=77.64229110894304&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    // console.log(json);
+    // Optional Chaining
+    setAllRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
 
@@ -104,7 +106,11 @@ const BodyComponent = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard {...restaurant.info} />
+            {restaurant?.info?.promoted ? (
+              <RestaurantCardPromoted {...restaurant.info} />
+            ) : (
+              <RestaurantCard {...restaurant.info} />
+            )}
           </Link>
         ))}
       </div>
