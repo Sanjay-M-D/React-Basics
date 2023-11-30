@@ -1,7 +1,8 @@
 import Logo from "../assets/img/RadhaKrishna Logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 export const TitleComponent = () => (
   <Link to="/">
@@ -13,6 +14,8 @@ const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const onlineStatus = useOnlineStatus();
+
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="flex justify-between shadow-lg px-2 ">
@@ -44,6 +47,7 @@ const HeaderComponent = () => {
             </button>
           )}
           <li className="px-4">OnlineStatus: {onlineStatus ? "✅" : "🔴"}</li>
+          <li>{loggedInUser}</li>
         </ul>
       </div>
     </div>

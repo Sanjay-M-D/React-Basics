@@ -10,18 +10,18 @@ class UserClass extends React.Component {
 
     // console.log(props);
 
-    console.log(this.props.name + "Constructor...!");
+    // console.log(this.props.name + "Constructor...!");
   }
 
   componentDidMount() {
-    console.log(this.props.name + " ComponentDidMount...!");
+    // console.log(this.props.name + " ComponentDidMount...!");
   }
 
   render() {
     const { name, location, email } = this.props;
     const { count, count2 } = this.state;
 
-    console.log(name + " Render...!");
+    // console.log(name + " Render...!");
 
     return (
       <div>

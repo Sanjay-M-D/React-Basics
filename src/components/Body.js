@@ -1,8 +1,9 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import ShimmerComponent from "./Shimmer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -39,7 +40,7 @@ const BodyComponent = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89037501599536&lng=77.64229110894304&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    // console.log(json);
+    console.log(json);
     // Optional Chaining
     setAllRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -55,6 +56,8 @@ const BodyComponent = () => {
   // if (filteredRestaurants?.length === 0)
   //   return <h1>No Restaurant match your filter...!</h1>;
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   // Conditional Rendering ...
   return allRestaurants?.length === 0 ? (
     <ShimmerComponent />
@@ -64,8 +67,8 @@ const BodyComponent = () => {
         <div className="search m-4 p-4 ">
           <input
             type="text"
-            className="border border-solid border-black"
-            placeholder="Search"
+            className="border border-solid border-black p-2"
+            placeholder=""
             value={searchText}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -97,6 +100,15 @@ const BodyComponent = () => {
           >
             Top Rated Restaurants
           </button>
+        </div>
+
+        <div className=" UserInput m-4 p-4 flex items-center ">
+          <label>UserName : </label>
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 

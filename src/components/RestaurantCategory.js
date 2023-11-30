@@ -22,11 +22,10 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
             {data.title}({data?.itemCards?.length})
           </span>
           <span>⬇️</span>
+          {/*Accordion Body*/}
         </div>
         {showItems && <ItemList items={data.itemCards} />}
       </div>
-
-      {/*Accordion Body*/}
     </div>
   );
 };
