@@ -10,6 +10,9 @@ import ContactComponent from "./components/Contact";
 import RestaurantMenuComponent from "./components/RestaurantMenu";
 import ShimmerComponent from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 // import GroceryComponent from "./components/Grocery";
 
 // Chunking
@@ -34,13 +37,15 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <>
-        <HeaderComponent />
-        <Outlet />
-        <FooterComponent />
-      </>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <>
+          <HeaderComponent />
+          <Outlet />
+          <FooterComponent />
+        </>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -73,6 +78,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenuComponent />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

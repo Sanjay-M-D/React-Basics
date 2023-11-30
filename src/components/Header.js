@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const TitleComponent = () => (
   <Link to="/">
@@ -16,6 +17,10 @@ const HeaderComponent = () => {
   const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
+
+  // Subscribing to the store using a Selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex justify-between shadow-lg px-2 ">
@@ -34,8 +39,8 @@ const HeaderComponent = () => {
           <li className="px-4">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-4">
-            <Link to="/cart">Cart</Link>
+          <li className="px-4 font-bold">
+            <Link to="/cart">Cart-({cartItems.length} items)</Link>
           </li>
           {isLoggedIn ? (
             <button className="login-btn" onClick={() => setIsLoggedIn(false)}>
