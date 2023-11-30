@@ -1,4 +1,4 @@
-import Logo from "../assets/img/RadhaKrishna Logo.png";
+import Logo from "../assets/img/RadhaKrishnaLogo.png";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -20,7 +20,7 @@ const HeaderComponent = () => {
 
   // Subscribing to the store using a Selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <div className="flex justify-between shadow-lg px-2 ">
