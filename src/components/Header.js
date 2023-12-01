@@ -12,7 +12,7 @@ export const TitleComponent = () => (
 );
 
 const HeaderComponent = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const onlineStatus = useOnlineStatus();
 
