@@ -1,6 +1,7 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import ShimmerComponent from "./Shimmer";
 import { useEffect, useState, useContext } from "react";
+import { SWIGGY_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -36,9 +37,7 @@ const BodyComponent = () => {
   }
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89037501599536&lng=77.64229110894304&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(SWIGGY_API_URL);
     const json = await data.json();
     console.log(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
