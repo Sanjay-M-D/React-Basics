@@ -66,6 +66,7 @@ const BodyComponent = () => {
   ) : (
     <>
       <div className="filter flex">
+        {/* Search Button */}
         <div className="search m-4 p-4 ">
           <input
             type="text"
@@ -85,7 +86,7 @@ const BodyComponent = () => {
             Search
           </button>
         </div>
-
+        {/* Filter Button */}
         <div className="search m-4 p-4 flex items-center">
           <button
             className="filter-btn px-4 py-2 bg-gray-100 rounded-xl"
@@ -103,7 +104,6 @@ const BodyComponent = () => {
             Top Rated Restaurants
           </button>
         </div>
-
         <div className=" UserInput m-4 p-4 flex items-center ">
           <label>UserName : </label>
           <input
